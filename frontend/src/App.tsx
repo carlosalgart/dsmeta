@@ -1,14 +1,14 @@
-import NotificationButton from "./components/NotificationButton"
-import Header from "./components/Header"
-import SalesCard from "./components/SalesCard"
+import NotificationButton from "./components/NotificationButton";
+import Header from "./components/Header";
+import SalesCard from "./components/SalesCard";
 function App() {
   return (
     <>
-      <h1>The first</h1>
+      <h1>Meu primeiro projeto de Frontimento End</h1>
       <Header />
       <main>
       <section id="sales">
-        <div class="dsmeta-container">
+        <div className="dsmeta-container">
             <SalesCard />
         </div>
       </section>
@@ -16,4 +16,4 @@ function App() {
     </>
   )
 }
-export default App
+export default App;
