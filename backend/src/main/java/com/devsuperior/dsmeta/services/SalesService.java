@@ -73,13 +73,12 @@ public class SalesService {
 			throw new DataIntegrityViolationException("Id exists in another reference" + id);
 		}
 	}
-
 	
 	@Transactional
 	public Page<SaleDTO> findSales(String minDate, String maxDate, Pageable pageable){
 		LocalDate today = LocalDate.ofInstant(Instant.now(), ZoneId.systemDefault());
-		LocalDate min = LocalDate.parse(minDate);
-		LocalDate max = maxDate.equals("")? today: LocalDate.parse(maxDate);
+		LocalDate min = minDate.equals("")? today.minusYears(1) : LocalDate.parse(minDate);
+		LocalDate max = maxDate.equals("")? today : LocalDate.parse(maxDate);
 		return salesRepository.findSales(min, max, pageable);
 		
 	}
