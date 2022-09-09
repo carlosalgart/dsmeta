@@ -23,6 +23,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.devsuperior.dsmeta.DTO.SaleDTO;
 import com.devsuperior.dsmeta.services.SalesService;
+import com.devsuperior.dsmeta.services.SmsService;
 
 @RestController
 @RequestMapping(value = "/sales")
@@ -30,10 +31,18 @@ public class SalesControler {
 	@Autowired
 	private SalesService salesService;
 
+	@Autowired
+	private SmsService smsService;
+
 	@GetMapping
 	public Page<SaleDTO> findSales(@RequestParam(value = "minDate", defaultValue = "") String minDate,
 			@RequestParam(value = "maxDate", defaultValue = "") String maxDate, Pageable pageable) {
 		return salesService.findSales(minDate, maxDate, pageable);
+	}
+
+	@GetMapping(path="/{id}/notification")
+	public void notifySMS(@PathVariable Long id) {
+		smsService.sendSms(id);
 	}
 
 	@GetMapping(path = "/all")
